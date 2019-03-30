@@ -1,5 +1,7 @@
 # graphflix
-A graphql movie browser
+A graphql movie trailer browser
+
+![screenshot](https://raw.githubusercontent.com/nowshad-sust/graphflix/master/Screenshot.png)
 
 ## How to run
 - Clone the repository using command: `git clone https://github.com/nowshad-sust/graphflix.git`.
