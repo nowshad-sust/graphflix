@@ -12,6 +12,7 @@ const App = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   return (
     <ApolloProvider client={client} className="App">
+      <h1> GraphFlix </h1>
       <List setSelectedMovie={setSelectedMovie} />
       {selectedMovie ? <Details movieId={selectedMovie} /> : <div />}
     </ApolloProvider>

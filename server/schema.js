@@ -17,6 +17,9 @@ const MovieType = new GraphQLObjectType({
     Title: { type: GraphQLString },
     Genre: { type: GraphQLString },
     Year: { type: GraphQLString },
+    Trailer: { type: GraphQLString },
+    Images: { type: new GraphQLList(GraphQLString) },
+    Details: { type: GraphQLString },
     Actors: {
       type: ActorType,
       resolve: (parent, args) =>

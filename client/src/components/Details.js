@@ -10,17 +10,28 @@ const Details = ({ data: { loading, movie } }) => {
     Title,
     Genre,
     Year,
+    Details,
+    Trailer,
     Actors: { name }
   } = movie;
 
   return (
     <div className="movie-details">
-      <h4>{Title}</h4>
-      <p>{name}</p>
-      <p>
-        {Year}: {Genre}
-      </p>
-      <p>More Details</p>
+      <div className="movie-trailer">
+        <iframe
+          src={Trailer}
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+      <div className="movie-info">
+        <h3>{Title}</h3>
+        <span>{Year}</span>
+        <p>{Genre}</p>
+        <p>Key Actor: {name}</p>
+        <p>{Details}</p>
+      </div>
     </div>
   );
 };

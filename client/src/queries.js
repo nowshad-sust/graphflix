@@ -7,6 +7,7 @@ const getMovies = gql`
       Title
       Genre
       Year
+      Images
     }
   }
 `;
@@ -18,6 +19,9 @@ const getMovieDetails = gql`
       Title
       Genre
       Year
+      Details
+      Trailer
+      Images
       Actors {
         name
       }

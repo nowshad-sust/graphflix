@@ -6,20 +6,94 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background: #0c0b21 none repeat scroll 0 0;
+  color: white;
 }
 
 #root {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+#root h1 {
+  flex: 0 0 100%;
+  height: 60px;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #c21b1b;
+}
+
+.list.movies {
+  flex: 0 0 45%;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.list-content.movie {
+  flex: 0 0 35%;
+  border: 1px solid white;
+  margin: 10px 20px;
+  background-size: cover;
+  height: 230px;
+}
+
+.movie-content {
+  flex: 0 0 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #201c1cb8;
+  min-height: 91%;
+  padding: 10px;
+}
+
+.movie-content .genre, a {
+  opacity: 0;
+  transition: all linear 0.3s;
+}
+
+.movie-content a > img {
+  border-radius: 50%;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+  padding: 8px 6px 8px 10px;
+  background: black;
+}
+
+.movie-content a:hover {
+  cursor: pointer;
+}
+
+.list-content.movie .title, .year {
+  margin: 5px;
+}
+
+.list-content.movie:hover a {
+  opacity: 1;
+}
+.list-content.movie:hover .genre {
+  opacity: 1;
+}
+.list-content.movie:hover .movie-content {
+  background: #201c1c8f;
 }
 
 .movie-details {
+  flex: 0 0 45%;
+  margin: 10px;
   border: 1px solid grey;
   padding: 10px;
+}
+
+.movie-trailer iframe {
+  width: 100%;
+  height: 400px;
 }
