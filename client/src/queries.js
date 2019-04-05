@@ -4,10 +4,10 @@ const getMovies = gql`
   {
     movies {
       id
-      Title
-      Genre
-      Year
-      Images
+      title
+      genre
+      year
+      images
     }
   }
 `;
@@ -16,13 +16,13 @@ const getMovieDetails = gql`
   query GetMovie($id: ID) {
     movie(id: $id) {
       id
-      Title
-      Genre
-      Year
-      Details
-      Trailer
-      Images
-      Actors {
+      title
+      genre
+      year
+      details
+      trailer
+      images
+      actors {
         name
       }
     }

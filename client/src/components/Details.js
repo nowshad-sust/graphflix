@@ -5,32 +5,25 @@ import { getMovieDetails } from "../queries";
 const Details = ({ data: { loading, movie } }) => {
   if (loading) return <div>Loading ...</div>;
 
-  const {
-    id,
-    Title,
-    Genre,
-    Year,
-    Details,
-    Trailer,
-    Actors: { name }
-  } = movie;
+  const { id, title, genre, year, details, trailer, actors } = movie;
 
   return (
     <div className="movie-details">
       <div className="movie-trailer">
         <iframe
-          src={Trailer}
+          title={id + title}
+          src={trailer}
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
       </div>
       <div className="movie-info">
-        <h3>{Title}</h3>
-        <span>{Year}</span>
-        <p>{Genre}</p>
-        <p>Key Actor: {name}</p>
-        <p>{Details}</p>
+        <h3>{title}</h3>
+        <span>{year}</span>
+        <p>{genre}</p>
+        <p>Key Actors: {actors.map(({ name }) => name).join(", ")}</p>
+        <p>{details}</p>
       </div>
     </div>
   );

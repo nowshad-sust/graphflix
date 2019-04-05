@@ -8,22 +8,26 @@ const {
   GraphQLNonNull
 } = require("graphql");
 
-const { movies, actors } = require("./data");
+const knex = require("./db");
 
 const MovieType = new GraphQLObjectType({
   name: "Movie",
   fields: () => ({
     id: { type: GraphQLID },
-    Title: { type: GraphQLString },
-    Genre: { type: GraphQLString },
-    Year: { type: GraphQLString },
-    Trailer: { type: GraphQLString },
-    Images: { type: new GraphQLList(GraphQLString) },
-    Details: { type: GraphQLString },
-    Actors: {
-      type: ActorType,
+    title: { type: GraphQLString },
+    genre: { type: GraphQLString },
+    year: { type: GraphQLString },
+    trailer: { type: GraphQLString },
+    images: { type: new GraphQLList(GraphQLString) },
+    details: { type: GraphQLString },
+    actors: {
+      type: new GraphQLList(ActorType),
       resolve: (parent, args) =>
-        actors.find(actor => parent.Actors === actor.id)
+        knex("actors_movies")
+          .select("actor_id")
+          .where({ movie_id: parent.id })
+          .then(rows => rows.map(row => row.actor_id))
+          .then(actors => knex("actors").whereIn("id", actors))
     }
   })
 });
@@ -36,7 +40,11 @@ const ActorType = new GraphQLObjectType({
     movies: {
       type: new GraphQLList(MovieType),
       resolve: (parent, args) =>
-        movies.filter(movie => movie.Actors === parent.id)
+        knex("actors_movies")
+          .select("movie_id")
+          .where({ actor_id: parent.id })
+          .then(rows => rows.map(row => row.movie_id))
+          .then(movies => knex("movies").whereIn("id", movies))
     }
   })
 });
@@ -47,15 +55,14 @@ const RootQuery = new GraphQLObjectType({
     movie: {
       type: MovieType,
       args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
-        return movies.find(movie => movie.id == args.id);
-      }
+      resolve: (parent, args) =>
+        knex("movies")
+          .where({ id: args.id })
+          .first()
     },
     movies: {
       type: new GraphQLList(MovieType),
-      resolve(parent, args) {
-        return movies;
-      }
+      resolve: (parent, args) => knex("movies")
     }
   }
 });
