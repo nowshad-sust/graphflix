@@ -1,4 +1,4 @@
-const { actors } = require("../../data");
+const { actors } = require("../data");
 
 exports.seed = (knex, Promise) =>
   knex("actors")

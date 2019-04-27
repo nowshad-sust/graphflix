@@ -1,4 +1,4 @@
-const { movies } = require("../../data");
+const { movies } = require("../data");
 
 exports.seed = (knex, Promise) =>
   knex("movies")

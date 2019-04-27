@@ -4,9 +4,7 @@ import { ApolloProvider } from "react-apollo";
 import List from "./components/List";
 import Details from "./components/Details";
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
-});
+const client = new ApolloClient({ uri: "http://localhost:4000/graphql" });
 
 const App = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);

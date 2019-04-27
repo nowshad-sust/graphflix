@@ -13,7 +13,7 @@ const getMovies = gql`
 `;
 
 const getMovieDetails = gql`
-  query GetMovie($id: ID) {
+  query GetMovie($id: ID!) {
     movie(id: $id) {
       id
       title

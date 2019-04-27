@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "graphpack",
     "knex": "node_modules/knex/bin/cli.js",
+    "build": "graphpack build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,6 +22,7 @@
     "mysql2": "^1.6.5"
   },
   "devDependencies": {
+    "graphpack": "^1.0.8",
     "nodemon": "^1.18.10"
   }
 }
