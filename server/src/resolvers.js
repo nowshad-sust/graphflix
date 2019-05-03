@@ -25,6 +25,18 @@ const resolvers = {
           )
         )
   },
+  Actor: {
+    movies: ({ id: actor_id }) =>
+      knex("actors_movies")
+        .where({ actor_id })
+        .then(rows =>
+          rows.map(({ movie_id }) =>
+            knex("movies")
+              .where("id", movie_id)
+              .first()
+          )
+        )
+  },
   Mutation: {
     createActor: async (_, { name }) => {
       const [id] = await knex("actors").insert({ name });
